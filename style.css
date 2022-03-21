@@ -8,6 +8,7 @@ body {
 
 #main {
     width: 450px;
+    height: auto;
     border: 5px solid black;
     display: flex;
     flex-direction: column;
@@ -16,10 +17,12 @@ body {
 }
 
 #display {
+    word-break: break-all;
     display: flex;
     justify-content: end;
     align-items: center;
-    height: 70px;
+    flex-wrap: wrap;
+    height: auto;
     width: 400px;
     border: 3px solid black;
     font-size: 60px;
@@ -36,7 +39,7 @@ body {
     margin-bottom: 10px;
 }
 
-.button, .operation-button, #result {
+.button, .operation-button, #result, #ac, .point-button {
     height: 100px;
     width: 100px;
     font-size: 30px;

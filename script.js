@@ -3,12 +3,15 @@ const buttons = document.querySelectorAll(".button");
 const operationButtons = document.querySelectorAll(".operation-button");
 const outcome = document.querySelector("#result");
 
+const ac = document.querySelector("#ac");
+const point = document.querySelector("#point");
 
-let firstOperand = 0;
-let secondOperand = 0;
+
+let firstOperand = "";
+let secondOperand = "";
 let operator;
 
-const createdNum = [];
+let createdNum = "";
 
 display.textContent = 0;
 
@@ -16,9 +19,9 @@ display.textContent = 0;
 
 buttons.forEach(btn => {
     btn.addEventListener("click", () => {
-        display.textContent = firstOperand;
-        createdNum.push(btn.dataset.value);
-        firstOperand = Number(createdNum.join(""));
+        createdNum = "";
+        createdNum = btn.dataset.value;
+        firstOperand = firstOperand + createdNum;
         display.textContent = firstOperand;
     });
 });
@@ -26,23 +29,37 @@ buttons.forEach(btn => {
 operationButtons.forEach(opBtn => {
     opBtn.addEventListener("click", () => {
         operator = opBtn.dataset.value;
+        if (firstOperand == "") return;
         secondOperand = firstOperand;
-        firstOperand = 0;
-        createdNum.length =  0;
         display.textContent = secondOperand;
+        firstOperand = "";
     });
 });
 
 function getResult (b, a, c){
-    if (c === "+") return b + a;
-    if (c === "-") return b - a;
-    if (c === "*") return b * a;
-    if (c === "/") return b / a;
+    if (c === "+") return Number(b) + Number(a);
+    if (c === "-") return Number(b) - Number(a);
+    if (c === "*") return Number(b) * Number(a);
+    if (c === "/") return Number(b) / Number(a);
 };
 
 outcome.addEventListener("click", () => {
-    display.textContent = getResult(secondOperand, firstOperand, operator);
-    console.log(firstOperand);
-    console.log(secondOperand);
-    console.log(operator);
+    let tempResult = getResult(secondOperand, firstOperand, operator);
+    display.textContent = tempResult;
+    firstOperand = tempResult;
+});
+
+ac.addEventListener("click", () => {
+    firstOperand = "";
+    secondOperand = "";
+    operator = "";
+    createdNum = "";
+    display.textContent = 0;
+});
+
+point.addEventListener("click", () => {
+    if (firstOperand.includes(".")) return;
+    createdNum = point.dataset.value;
+    firstOperand = firstOperand + createdNum;
+    display.textContent = firstOperand;
 });
