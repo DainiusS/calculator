@@ -39,7 +39,7 @@ body {
     margin-bottom: 10px;
 }
 
-.button, .operation-button, #result, #ac, .point-button {
+.button, .operation-button, #result, #ac, .point-button, #percent, #plus-minus {
     height: 100px;
     width: 100px;
     font-size: 30px;
